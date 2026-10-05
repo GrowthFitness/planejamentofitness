@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Planejamento Fitness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; }
+  body { font-family:'Work Sans', system-ui, sans-serif; background:#ffffff; color:#1a1a1a; }
+  a { text-decoration:none; }
+  .headf { font-family:'Sora', system-ui, sans-serif; }
+
+  /* ---------- DOBRA 1 (preto): vídeo ---------- */
+  .hero { background:#000000; min-height:100vh; min-height:100svh; padding:16px 0; display:flex; align-items:center; justify-content:center; }
+  .player-wrap { width:100%; max-width:900px; aspect-ratio:16/9; overflow:hidden; background:#000; position:relative; }
+  @media (min-width:700px) { .player-wrap { border-radius:10px; } .hero { padding:32px 20px; } }
+  .player-wrap iframe { width:100%; height:100%; border:0; display:block; }
+  .player-placeholder { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#777777; font-size:12px; letter-spacing:0.08em; }
+
+  /* ---------- DOBRA 2 (branco): aulas ---------- */
+  .aulas { padding:56px 20px; display:flex; justify-content:center; }
+  .aulas-inner { width:100%; max-width:600px; display:flex; flex-direction:column; gap:12px; }
+  .aulas-title { margin:0 0 8px; font-size:20px; font-weight:800; color:#0d0d0d; text-align:center; text-transform:uppercase; }
+
+  .lesson {
+    display:flex; align-items:center; gap:14px; width:100%;
+    padding:16px 18px; border:1px solid #e5e5e5; border-radius:12px; background:#ffffff;
+  }
+  .lesson .num {
+    flex:0 0 auto; width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:14px; background:#0d0d0d; color:#ffffff;
+  }
+  .lesson .info { flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:4px; }
+  .lesson .name { font-size:17px; font-weight:800; color:#0d0d0d; text-transform:uppercase; letter-spacing:0.01em; white-space:nowrap; }
+  .lesson .kicker { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#e8871e; }
+  .lesson .meta { font-size:12px; color:#777777; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .badge { font-size:10px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:3px 8px; border-radius:999px; }
+  .badge.free { background:#dcfce7; color:#15803d; }
+  .badge.soon { background:#ececec; color:#6b6b6b; }
+  .lock { flex:0 0 auto; width:22px; height:22px; }
+
+  .lesson.open { cursor:pointer; -webkit-tap-highlight-color:transparent; transition:border-color .15s, background .15s; }
+  .lesson.open:hover { border-color:#e8871e; }
+  .lesson.open.active { border-color:#e8871e; background:#fff7ee; }
+  .lesson.open.active .num { background:#e8871e; }
+
+  .lesson.locked { background:#f5f5f5; }
+  .lesson.locked .num { background:#c9c9c9; }
+  .lesson.locked .name { color:#8a8a8a; }
+  .lesson.locked .meta { color:#a0a0a0; }
+  .lesson.locked .lock { opacity:0.55; }
+
+  /* ---------- DOBRA 3 (preto): pitch ---------- */
+  .pitch { background:#0d0d0d; padding:64px 20px; display:flex; justify-content:center; }
+  .pitch-inner { width:100%; max-width:520px; display:flex; flex-direction:column; align-items:center; gap:18px; text-align:center; }
+  .pitch h2 { margin:0; font-size:24px; line-height:1.25; font-weight:800; color:#ffffff; text-transform:uppercase; text-wrap:balance; }
+  .pitch p { margin:0; font-size:15px; line-height:1.65; color:#cfcfcf; }
+  .btn {
+    display:block; width:100%; max-width:400px; text-align:center;
+    font-size:14px; font-weight:700; letter-spacing:0.02em; text-transform:uppercase;
+    padding:17px 20px; border-radius:8px; color:#ffffff; background:#22c55e; margin-top:6px;
+  }
+
+  @media (max-width:480px) {
+    .aulas { padding:40px 16px; }
+    .lesson { padding:14px; gap:12px; }
+    .lesson .name { font-size:16px; }
+    .pitch { padding:48px 16px; }
+    .pitch h2 { font-size:22px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== DOBRA 1 (PRETO): VÍDEO ===================== -->
+  <section class="hero">
+    <div class="player-wrap" id="player-wrap">
+      <iframe
+        id="player"
+        src="https://www.youtube.com/embed/A_yLA4AgGHw?rel=0"
+        title="Planejamento Fitness, Parte 1"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- ===================== DOBRA 2 (BRANCO): AULAS ===================== -->
+  <section class="aulas">
+    <div class="aulas-inner">
+
+      <h2 class="headf aulas-title">Planejamento Fitness</h2>
+
+      <div class="lesson open active" role="button" tabindex="0" data-video="A_yLA4AgGHw" data-title="Parte 1: Mentalidade">
+        <div class="num">1</div>
+        <div class="info">
+          <span class="kicker">Parte 1</span><span class="name">Mentalidade</span>
+          <span class="meta"><span class="badge free">Liberada</span> 12:52</span>
+        </div>
+        <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></svg>
+      </div>
+
+      <div class="lesson open" role="button" tabindex="0" data-video="X97BIsBugbA" data-title="Parte 2: Gestão Fitness">
+        <div class="num">2</div>
+        <div class="info">
+          <span class="kicker">Parte 2</span><span class="name">Gestão Fitness</span>
+          <span class="meta"><span class="badge free">Liberada</span> 14:04</span>
+        </div>
+        <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></svg>
+      </div>
+
+      <div class="lesson open" role="button" tabindex="0" data-video="Lw3eJcEf9Us" data-title="Parte 3: Plano de Ação">
+        <div class="num">3</div>
+        <div class="info">
+          <span class="kicker">Parte 3</span><span class="name">Plano de Ação</span>
+          <span class="meta"><span class="badge free">Liberada</span> 18:26</span>
+        </div>
+        <svg class="lock" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></svg>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== DOBRA 3 (PRETO): PITCH ===================== -->
+  <section class="pitch">
+    <div class="pitch-inner">
+      <h2 class="headf">Quer ser acompanhado<br>por mim?</h2>
+      <p>Se você sente que precisa de acompanhamento para estruturar o seu negócio fitness e planejar melhor as estratégias que vão atrair e fidelizar novos alunos, faça sua inscrição para uma reunião estratégica comigo.</p>
+      <a class="btn" href="https://form.respondi.app/PFkKJGY9">Fazer inscrição para reunião estratégica</a>
+    </div>
+  </section>
+
+<script>
+  (function () {
+    var player = document.getElementById('player');
+    var wrap = document.getElementById('player-wrap');
+    var lessons = document.querySelectorAll('.lesson.open');
+    function play(el) {
+      player.src = 'https://www.youtube.com/embed/' + el.getAttribute('data-video') + '?autoplay=1&rel=0';
+      player.title = el.getAttribute('data-title');
+      for (var i = 0; i < lessons.length; i++) lessons[i].classList.remove('active');
+      el.classList.add('active');
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    for (var i = 0; i < lessons.length; i++) {
+      (function (el) {
+        el.addEventListener('click', function () { play(el); });
+        el.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(el); }
+        });
+      })(lessons[i]);
+    }
+  })();
+</script>
+
+</body>
+</html>
